@@ -1,6 +1,13 @@
+import { useDispatch, useSelector } from "react-redux"
 import "./style.css"
+import{set_celebrities} from "../redux/actions/celebrityAction"
+import celebrityData from "../json/celebrity.json"
 
 const UserList = () => {
+    const data=useSelector((state)=>state.setCelebrity.celebrityData)
+    const dispatch=useDispatch()
+
+    dispatch(set_celebrities(celebrityData))
     return (
         <>
             <div className="container d-flex justify-content-center align-items-center flex-column" >
