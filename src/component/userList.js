@@ -1,33 +1,60 @@
 import { useDispatch, useSelector } from "react-redux"
 import "./style.css"
-import{set_celebrities} from "../redux/actions/celebrityAction"
+import { set_celebrities } from "../redux/actions/celebrityAction"
 import celebrityData from "../json/celebrity.json"
+import Accordion from 'react-bootstrap/Accordion';
 
 const UserList = () => {
-    const data=useSelector((state)=>state.setCelebrity.celebrityData)
-    const dispatch=useDispatch()
-
+    const data = useSelector((state) => state.setCelebrity.celebrityData)
+    const dispatch = useDispatch()
     dispatch(set_celebrities(celebrityData))
+
+    console.log(data)
+
     return (
         <>
-            <div className="container d-flex justify-content-center align-items-center flex-column" >
-                <div className="accordion w-100 pt-5 pb-4" id="accordionExample">
-                    <div className="accordion-item">
-                        <h2 className="accordion-header" id="headingOne">
-                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Accordion Item #1
-                            </button>
-                        </h2>
-                        <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
+            <div className="containr d-flex justify-content-center align-items-center flex-column " >
+                <div className="accordion acc w-100 " id="accordionExample">
+                    {data.map((item) => {
+                        return (
+                            <Accordion className="accordion acc1 ">
+                                <Accordion.Item eventKey="0">
+                                    <Accordion.Header>
+                                        <img className="image img-fluid" src={item.picture} alt=""/>
+                                        <div className="full-name"> {`${item.first} ${item.last} `}</div>
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        <div className="main d-flex flex-column">
+                                            <div className="top-section d-flex">
+                                                <div className="age-cont col-md-4">
+                                                    <div className="col">Age</div>
+                                                    <div className="age">22</div >
+                                                </div>
+                                                <div className="gender-cont col-md-4">
+                                                    <div className="col">Gender</div>
+                                                    <div className="gender">{item.gender}</div >
+                                                </div>
+                                                <div className="country-cont col-md-4">
+                                                    <div className="col">Country</div>
+                                                    <div className="country">{item.country}</div>
+                                                </div>
+                                            </div>
+                                            <div className="bottom-section">
+                                                <div className="col">Description</div>
+                                                <div>{item.description}</div>
+                                            </div>
+                                        </div>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
+                        )
+                    })}
                 </div>
+
             </div>
         </>
     )
 }
 
 export default UserList
+
