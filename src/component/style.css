@@ -15,8 +15,10 @@
 .containr{
     padding: 40px;
 }
+
 .acc1{
-    margin:20px
+    margin:20px;
+    /* border:2px solid red */
 }
 .main{
     padding: 0 30px;
