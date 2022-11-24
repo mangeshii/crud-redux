@@ -3,6 +3,8 @@ import "./style.css"
 import { set_celebrities } from "../redux/actions/celebrityAction"
 import celebrityData from "../json/celebrity.json"
 import Accordion from 'react-bootstrap/Accordion';
+import { GrEdit } from 'react-icons/gr';
+import { RiDeleteBin6Line } from 'react-icons/ri'
 
 const UserList = () => {
     const data = useSelector((state) => state.setCelebrity.celebrityData)
@@ -20,21 +22,21 @@ const UserList = () => {
                             <Accordion className="accordion acc1 ">
                                 <Accordion.Item eventKey="0">
                                     <Accordion.Header>
-                                        <img className="image img-fluid" src={item.picture} alt=""/>
+                                        <img className="image img-fluid" src={item.picture} alt="" />
                                         <div className="full-name"> {`${item.first} ${item.last} `}</div>
                                     </Accordion.Header>
                                     <Accordion.Body>
                                         <div className="main d-flex flex-column">
                                             <div className="top-section d-flex">
-                                                <div className="age-cont col-md-4">
+                                                <div className="age-cont col-md-4 col-4">
                                                     <div className="col">Age</div>
                                                     <div className="age">22</div >
                                                 </div>
-                                                <div className="gender-cont col-md-4">
+                                                <div className="gender-cont col-md-4 col-4">
                                                     <div className="col">Gender</div>
                                                     <div className="gender">{item.gender}</div >
                                                 </div>
-                                                <div className="country-cont col-md-4">
+                                                <div className="country-cont col-md-4 col-4">
                                                     <div className="col">Country</div>
                                                     <div className="country">{item.country}</div>
                                                 </div>
@@ -42,6 +44,14 @@ const UserList = () => {
                                             <div className="bottom-section">
                                                 <div className="col">Description</div>
                                                 <div>{item.description}</div>
+                                            </div>
+                                            <div className="icon-cont d-flex justify-content-end">
+                                                <div className="edit-icon">
+                                                    <GrEdit />
+                                                </div>
+                                                <div className="delete-icon">
+                                                    <RiDeleteBin6Line />
+                                                </div>
                                             </div>
                                         </div>
                                     </Accordion.Body>

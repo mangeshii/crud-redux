@@ -27,14 +27,25 @@
 .col{
     color:gray
 }
+.icon-cont{
+    font-size: 20px;
+}
+.edit-icon,.delete-icon{
+    margin:10px;
+    cursor: pointer;
+    color:red
+}
 @media only screen and (max-width: 768px){
     .image{
-        margin: 0px !important;
+        margin:0px 15px 0px 0px
     }
     .containr{
         padding: 0%;
     }
     .acc1{
         margin:10px
+    }
+    .main{
+        padding:0px;
     }
 }
