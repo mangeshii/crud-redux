@@ -18,7 +18,6 @@
 
 .acc1{
     margin:20px;
-    /* border:2px solid red */
 }
 .main{
     padding: 0 30px;
@@ -37,6 +36,14 @@
     cursor: pointer;
     color:red
 }
+.input-area{
+    width:650px;
+    max-width: 650px;
+    padding:5px;
+    border-radius: 5px;
+    border:1px solid black
+}
+
 @media only screen and (max-width: 768px){
     .image{
         margin:0px 15px 0px 0px

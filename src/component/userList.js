@@ -8,31 +8,40 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useEffect, useState } from "react";
-
+import { search_name } from "../redux/actions/celebrityAction";
+// import { AiOutlineSearch } from 'react-icons/ai'
 
 const UserList = () => {
     const data = useSelector((state) => state.setCelebrity.celebrityData)
+    const [show, setShow] = useState(false);
+    const [id, setId] = useState();
     const dispatch = useDispatch()
+    const current = new Date();
+    const date = `${current.getFullYear()}`;
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(set_celebrities(celebrityData))
         // eslint-disable-next-line
     },[])
-
-    const [show, setShow] = useState(false);
-    const [id, setId] = useState()
-
+    
 
     const handleClose = () => setShow(false);
+
     const handleShow = (id) => {
         setId(id)
         setShow(true);
     }
-    
+
     const handleDelete = () => {
         dispatch(remove_selected_celebrity(id))
         setShow(false)
     }
+    
+    const handleSearch=(e)=>{
+            e.preventDefault()
+            dispatch(search_name(e.target.value))
+    }
+
     return (
         <>
 
@@ -51,6 +60,11 @@ const UserList = () => {
             )}
 
             <div className="containr d-flex justify-content-center align-items-center flex-column " >
+                <div className="search-cont">
+                    <div className="search-input">
+                        <input className="input-area" type="text" placeholder="Search user" onChange={handleSearch}/>
+                    </div>
+                </div>
                 <div className="accordion acc w-100 " id="accordionExample">
                     {data.map((item, id) => {
                         return (
@@ -66,7 +80,7 @@ const UserList = () => {
                                                 <div className="top-section d-flex">
                                                     <div className="age-cont col-md-4 col-4">
                                                         <div className="col">Age</div>
-                                                        <div className="age">22</div >
+                                                        <div className="age">{`${date - item.dob.slice(0,4)}`}</div >
                                                     </div>
                                                     <div className="gender-cont col-md-4 col-4">
                                                         <div className="col">Gender</div>
@@ -86,7 +100,7 @@ const UserList = () => {
                                                         <GrEdit />
                                                     </div>
                                                     <div className="delete-icon">
-                                                        <RiDeleteBin6Line onClick={()=>handleShow(id)} />
+                                                        <RiDeleteBin6Line onClick={() => handleShow(id)} />
                                                     </div>
                                                 </div>
                                             </div>

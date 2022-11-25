@@ -10,3 +10,11 @@ export const remove_selected_celebrity = (celebrityData) => {
         payload: celebrityData
     }
 }
+
+export const search_name = (name) => {
+    // console.log(name)
+    return {
+        type: "SEARCH_NAME",
+        payload: name
+    }
+}
