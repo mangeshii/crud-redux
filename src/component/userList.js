@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import "./style.css"
-import { set_celebrities, remove_selected_celebrity } from "../redux/actions/celebrityAction"
+import { set_celebrities, remove_selected_celebrity  } from "../redux/actions/celebrityAction"
 import celebrityData from "../json/celebrity.json"
 import Accordion from 'react-bootstrap/Accordion';
 import { GrEdit } from 'react-icons/gr';
@@ -8,12 +8,11 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useEffect, useState } from "react";
-import { search_name } from "../redux/actions/celebrityAction";
-// import { AiOutlineSearch } from 'react-icons/ai'
 
 const UserList = () => {
     const data = useSelector((state) => state.setCelebrity.celebrityData)
     const [show, setShow] = useState(false);
+    const [searchName,setSearchName]=useState("")
     const [id, setId] = useState();
     const dispatch = useDispatch()
     const current = new Date();
@@ -39,7 +38,7 @@ const UserList = () => {
     
     const handleSearch=(e)=>{
             e.preventDefault()
-            dispatch(search_name(e.target.value))
+            setSearchName(e.target.value)
     }
 
     return (
@@ -66,7 +65,13 @@ const UserList = () => {
                     </div>
                 </div>
                 <div className="accordion acc w-100 " id="accordionExample">
-                    {data.map((item, id) => {
+                    {data.filter((val)=>{
+                         if (searchName == "") {
+                            return val
+                        } else if (val.first.toLowerCase().includes(searchName.toLowerCase())) {
+                            return val
+                        }
+                    }).map((item, id) => {
                         return (
                             <div key={id}>
                                 <Accordion className="accordion acc1 ">
