@@ -65,8 +65,10 @@ const UserList = () => {
                     </div>
                 </div>
                 <div className="accordion acc w-100 " id="accordionExample">
-                    {data.filter((val)=>{
-                         if (searchName == "") {
+                    {// eslint-disable-next-line
+                    data.filter((val)=>{
+                        if (searchName === "") {
+                            
                             return val
                         } else if (val.first.toLowerCase().includes(searchName.toLowerCase())) {
                             return val

@@ -43,6 +43,15 @@
     border-radius: 5px;
     border:1px solid black
 }
+.ta{
+    padding:10px
+}
+.search-cont{
+    border:2px solid red;
+    width:650px;
+    max-width: 650px;
+}
+textarea{width:100%;display:block}
 
 @media only screen and (max-width: 768px){
     .image{
