@@ -4,7 +4,7 @@ import { set_celebrities, remove_selected_celebrity ,edit_celebrity} from "../re
 import celebrityData from "../json/celebrity.json"
 import Accordion from 'react-bootstrap/Accordion';
 import { GrEdit } from 'react-icons/gr';
-import { RiDatabase2Fill, RiDeleteBin6Line } from 'react-icons/ri';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useEffect, useState } from "react";
@@ -16,7 +16,8 @@ const UserList = () => {
     const [show, setShow] = useState(false);
     const [searchName, setSearchName] = useState("")
     const [id, setId] = useState();
-    const [isDisabled, setIsDisabled] = useState(true);
+    const [isDisabled, setIsDisabled] = useState(null);
+    // const [enabledId,setEnabledId]=useState(null)
     const dispatch = useDispatch()
     const current = new Date();
     const date = `${current.getFullYear()}`;
@@ -45,12 +46,13 @@ const UserList = () => {
         setSearchName(e.target.value)
     }
 
-    const handleEdit = () => {
-        setIsDisabled(false)
+    const handleEdit = (e) => {
+        console.log(e)
+        setIsDisabled(e)
     }
     
     const handleEditSuccess=()=>{  
-        setIsDisabled(true)
+        setIsDisabled(null)
     }
 
     const setUpdatedData=(e,key,id)=>{
@@ -107,11 +109,11 @@ const UserList = () => {
                                                         </div>
                                                         <div className="gender-cont col-md-4 col-4">
                                                             <div className="col">Gender</div>
-                                                            <input onChange={(e)=>{setUpdatedData(e.target.value,"gender",item.id)}} defaultValue={item.gender} disabled={isDisabled} size="2" />
+                                                            <input onChange={(e)=>{setUpdatedData(e.target.value,"gender",item.id)}} defaultValue={item.gender} disabled={isDisabled !== item.id} size="2" />
                                                         </div>
                                                         <div className="country-cont col-md-4 col-4">
                                                             <div className="col">Country</div>
-                                                            <input onChange={(e)=>{setUpdatedData(e.target.value,"country",item.id)}} defaultValue={item.country} disabled={isDisabled} size="6" />
+                                                            <input onChange={(e)=>{setUpdatedData(e.target.value,"country",item.id)}} defaultValue={item.country} disabled={isDisabled !== item.id} size="6" />
                                                         </div>
                                                     </div>
                                                     <div className="bottom-section">
@@ -120,10 +122,10 @@ const UserList = () => {
                                                         {/* <input onChange={(e)=>{setUpdatedData(e.target.value)}} defaultValue={item.description} disabled={isDisabled} size="6" /> */}
 
                                                     </div>
-                                                    {isDisabled ? (
+                                                    {isDisabled !== item.id ? (
                                                         <div className="icon-cont d-flex justify-content-end">
                                                             <div className="edit-icon">
-                                                                <GrEdit onClick={()=>handleEdit()} />
+                                                                <GrEdit onClick={()=>handleEdit(item.id)} />
                                                             </div>
                                                             <div className="delete-icon">
                                                                 <RiDeleteBin6Line onClick={() => handleShow(item.id)} />
