@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import "./style.css"
-import { set_celebrities, remove_selected_celebrity ,edit_celebrity} from "../redux/actions/celebrityAction"
+import { set_celebrities, remove_selected_celebrity, edit_celebrity } from "../redux/actions/celebrityAction"
 import celebrityData from "../json/celebrity.json"
 import Accordion from 'react-bootstrap/Accordion';
 import { GrEdit } from 'react-icons/gr';
@@ -50,13 +50,13 @@ const UserList = () => {
         console.log(e)
         setIsDisabled(e)
     }
-    
-    const handleEditSuccess=()=>{  
+
+    const handleEditSuccess = () => {
         setIsDisabled(null)
     }
 
-    const setUpdatedData=(e,key,id)=>{
-        dispatch(edit_celebrity({[key]:e,id}))
+    const setUpdatedData = (e, key, id) => {
+        dispatch(edit_celebrity({ [key]: e, id }))
     }
 
     return (
@@ -105,27 +105,31 @@ const UserList = () => {
                                                     <div className="top-section d-flex">
                                                         <div className="age-cont col-md-4 col-4">
                                                             <div className="col">Age</div>
-                                                            <input onChange={(e)=>{setUpdatedData(e.target.value)}} defaultValue={`${date - item.dob.slice(0, 4)}`} disabled={true} size="1" />
+                                                            <input onChange={(e) => { setUpdatedData(e.target.value) }} defaultValue={`${date - item.dob.slice(0, 4)}`} disabled={true} size="1" />
                                                         </div>
                                                         <div className="gender-cont col-md-4 col-4">
                                                             <div className="col">Gender</div>
-                                                            <input onChange={(e)=>{setUpdatedData(e.target.value,"gender",item.id)}} defaultValue={item.gender} disabled={isDisabled !== item.id} size="2" />
+                                                            <select value={item.gender} onChange={(e) => { setUpdatedData(e.target.value, "gender", item.id) }} disabled={isDisabled !== item.id} >
+                                                                <option value="male">male</option>
+                                                                <option value="female">female</option>
+                                                                <option value="transgender">transgender</option>
+                                                                <option value="other">other</option>
+                                                            </select>
                                                         </div>
                                                         <div className="country-cont col-md-4 col-4">
                                                             <div className="col">Country</div>
-                                                            <input onChange={(e)=>{setUpdatedData(e.target.value,"country",item.id)}} defaultValue={item.country} disabled={isDisabled !== item.id} size="6" />
+                                                            <input onChange={(e) => { setUpdatedData(e.target.value, "country", item.id) }} defaultValue={item.country} disabled={isDisabled !== item.id} size="6" />
                                                         </div>
                                                     </div>
                                                     <div className="bottom-section">
                                                         <div className="col">Description</div>
                                                         <div>{item.description}</div>
-                                                        {/* <input onChange={(e)=>{setUpdatedData(e.target.value)}} defaultValue={item.description} disabled={isDisabled} size="6" /> */}
 
                                                     </div>
                                                     {isDisabled !== item.id ? (
                                                         <div className="icon-cont d-flex justify-content-end">
                                                             <div className="edit-icon">
-                                                                <GrEdit onClick={()=>handleEdit(item.id)} />
+                                                                <GrEdit onClick={() => handleEdit(item.id)} />
                                                             </div>
                                                             <div className="delete-icon">
                                                                 <RiDeleteBin6Line onClick={() => handleShow(item.id)} />
@@ -134,7 +138,7 @@ const UserList = () => {
                                                     ) : (
                                                         <div className="icon-cont d-flex justify-content-end">
                                                             <div className="check-icon">
-                                                                <BiCheckCircle onClick={handleEditSuccess}/>
+                                                                <BiCheckCircle onClick={handleEditSuccess} />
                                                             </div>
                                                             <div className="cancel-icon">
                                                                 <MdOutlineCancel />
