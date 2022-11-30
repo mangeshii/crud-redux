@@ -29,12 +29,14 @@
     color:gray
 }
 .icon-cont{
-    font-size: 20px;
+    font-size: 22px;
+    /* border:2px solid red; */
+    /* padding:10px */
 }
-.edit-icon,.delete-icon{
+.edit-icon,.delete-icon,.cancel-icon,.check-icon{
     margin:10px;
     cursor: pointer;
-    color:red
+    /* color:red */
 }
 .input-area{
     width:650px;
@@ -43,15 +45,6 @@
     border-radius: 5px;
     border:1px solid black
 }
-.ta{
-    padding:10px
-}
-.search-cont{
-    border:2px solid red;
-    width:650px;
-    max-width: 650px;
-}
-textarea{width:100%;display:block}
 
 @media only screen and (max-width: 768px){
     .image{

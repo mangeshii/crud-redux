@@ -10,4 +10,10 @@ export const remove_selected_celebrity = (celebrityData) => {
         payload: celebrityData
     }
 }
-
+export const edit_celebrity = (celebrityData) => {
+    // console.log(celebrityData)
+    return {
+        type: "EDIT_CELEBRITY",
+        payload: celebrityData
+    }
+}
