@@ -1,5 +1,5 @@
 const initialState = {
-    celebrityData: []
+    celebrityData: [],
 }
 
 export const setCelebrity = (state = initialState, action) => {
@@ -14,20 +14,20 @@ export const setCelebrity = (state = initialState, action) => {
             return {
                 ...state,
                 celebrityData: newstate
+            }
 
-            }
-        case "EDIT_CELEBRITY":
-            const {id,...name}=action.payload
-            const indexToUpdate = state.celebrityData.find(post => post.id === id)
-            const newPostsData = [...state.celebrityData]
-            newPostsData[indexToUpdate.id - 1] = {...newPostsData[indexToUpdate.id - 1],...name}
-            
+        case "UPDATED_CELEBRITY": {
+            const celebrity = action.payload
+            const celebrityToUpdate = state.celebrityData.find((item) => item.id === celebrity.id)
+            let newState = [...state.celebrityData];
+            newState[celebrityToUpdate.id - 1] = celebrity;
             return {
-                ...state,
-                celebrityData:newPostsData
+                celebrityData: newState,
             }
-            
+        }            
+          
         default:
             return state
     }
 }
+
