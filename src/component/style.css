@@ -14,6 +14,10 @@
 }
 .containr{
     padding: 40px;
+    display: flex; 
+    align-items: center;
+    width: 100%;
+    border:2px solid blue
 }
 
 .acc1{
@@ -30,28 +34,24 @@
 }
 .icon-cont{
     font-size: 22px;
-    /* border:2px solid red; */
-    /* padding:10px */
 }
 .edit-icon,.delete-icon,.cancel-icon,.check-icon{
     margin:10px;
     cursor: pointer;
-    /* color:red */
 }
 .input-area{
-    width:650px;
-    max-width: 650px;
     padding:5px;
     border-radius: 5px;
-    border:1px solid black
+    border:1px solid black;
+    width:650px;
+    max-width:650px
 }
-
 @media only screen and (max-width: 768px){
     .image{
         margin:0px 15px 0px 0px
     }
     .containr{
-        padding: 0%;
+        padding:40px 0%;
     }
     .acc1{
         margin:10px
